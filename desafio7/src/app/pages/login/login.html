@@ -1,48 +1,47 @@
 <div class="login-container">
+  
+  <div class="logo">
+    <img src="img/ford.png" alt="Ford">
+  </div>
 
-    <div class="logo">
-        <img src="img/ford.png" alt="Ford">
+  <div class="content">
+    <div class="vehicle-section">
+      <img src="img/ranger.png" alt="Ranger" class="vehicle-img">
     </div>
 
-    <div class="content">
+    <div class="form-section">
+      <div class="login-box">
+  <h2>Boas-vindas</h2>
 
-    <div class="vehicle">
-        <img src="img/ranger.png" alt="Ranger">
-    </div>    
-
-    <div class="login-box">
-
-        <h2>Boas-vindas</h2>
-
-        <input
-           type="text"
-           class="form-control mb-3"
-           placeholder="Insira seu e-mail">
-
-        <input
-           type="password"
-           class="form-control mb-3"
-           placeholder="Insira sua senha">
-
-    <div class="form-check mb-3">
-        <input
-           class="form-check mb-3"
-           type="checkbox"
-           id="autologin">
-
-        <label
-            class="form-check-input"
-            for="autologin">
-            Logar automaticamente
-        </label>
+  <div class="field-wrapper mb-3">
+    <div class="input-group-custom">
+      <i class="bi bi-person-fill icon-left"></i>
+      <input type="email" class="form-control-custom" placeholder="Insira seu e-mail">
     </div>
-           
-    <button class="btn btn-secondary w-100">
-        Entrar
-    </button>
+    <i class="bi bi-info-circle-fill icon-outside-green"></i>
+  </div>
 
-      </div>
+  <div class="field-wrapper mb-2">
+    <div class="input-group-custom">
+      <i class="bi bi-lock-fill icon-left"></i>
+      <input type="password" class="form-control-custom" placeholder="Insira sua senha">
+      <i class="bi bi-eye-slash icon-right-gray"></i> </div>
+    <div class="spacer-outside"></div> 
+  </div>
 
-   </div>
+  <div class="field-wrapper mb-4">
+    <div class="switch-left">
+      <span class="switch-label">Logar automaticamente</span>
+      <label class="switch">
+        <input type="checkbox" id="autologin">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <i class="bi bi-info-circle-fill icon-outside-green"></i>
+  </div>
 
+  <div class="field-wrapper">
+    <button class="btn-custom">Entrar</button>
+    <div class="spacer-outside"></div>
+  </div>
 </div>
