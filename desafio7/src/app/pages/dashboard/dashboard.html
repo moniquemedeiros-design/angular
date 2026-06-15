@@ -1,0 +1,78 @@
+<div class="dashboard-container">
+
+
+  <div class="card-veiculo">
+    <label>Veículo</label>
+
+    <select (change)="selecionarVeiculo($event)">
+      <option>Ranger</option>
+      <option>Mustang</option>
+      <option>Territory</option>
+      <option>Bronco Sport</option>
+    </select>
+  </div>
+
+</div>
+
+<div class="cards">
+
+  <div class="card-info">
+    <h3>Total de Vendas</h3>
+    <p>{{ totalvendas }}</p>
+  </div>
+
+  <div class="card-info">
+    <h3>Conectados</h3>
+    <p>{{ conectados }}</p>
+  </div>
+
+  <div class="card-info">
+    <h3>Software Atualizado</h3>
+    <p>{{ atualizados }}</p>
+  </div>
+
+</div>
+
+<div class="carro-centro">
+
+  <img [src]="veiculosSelecionado.imagem" [alt]="veiculosSelecionado.nome">
+
+</div>
+
+<div class="busca-vin">
+
+  <input type="text" placeholder="Digite o código VIN">
+
+  <button>Buscar</button>
+
+</div>
+
+<div class="tabela-container">
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>Odômetro</th>
+        <th>Nível de Combustível</th>
+        <th>Status</th>
+        <th>Lat.</th>
+        <th>Long.</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>{{ odometro }}</td>
+        <td>{{ combustivel }}</td>
+        <td>{{ status }}</td>
+        <td>{{ latitude }}</td>
+        <td>{{ longitude }}</td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+</div>

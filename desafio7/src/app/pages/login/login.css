@@ -47,29 +47,30 @@
     align-items: center;
     justify-content: center;
     padding: 40px;
+    color: #008b72;
 }
 
 .login-box {
     width: 500px; 
     display: flex;
     flex-direction: column;
+    align-items: center;
+    
 }
 
-/* --- O Segredo do Alinhamento Vertical Perfeito --- */
 .field-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 1px; /* Distância exata entre o fim do input e o início do ícone "i" */
+    gap: 1px; 
 }
 
-/* --- Container Interno do Input --- */
 .input-group-custom {
     position: relative;
     display: flex;
     align-items: center;
-    flex: 1; /* Faz o input expandir até o limite do espaçador/ícone */
+    flex: 1; 
 }
 
 .form-control-custom {
@@ -87,19 +88,17 @@
 }
 
 .form-control-custom:focus {
-    border-color: #0b5a43;
+    border-color: #000000;
 }
 
-/* --- Ícones Internos (Lado Esquerdo) --- */
 .input-group-custom .icon-left {
     position: absolute;
     left: 12px;
-    color: #0b5a43; /* Verde escuro */
+    color: #30572b;
     font-size: 16px;
     z-index: 2;
 }
 
-/* Olho cinza dentro do campo da senha */
 .input-group-custom .icon-right-gray {
     position: absolute;
     right: 12px;
@@ -109,23 +108,20 @@
     z-index: 2;
 }
 
-/* --- Ícones de Informação ("i") Verdes do Lado de FORA --- */
 .icon-outside-green {
-    color: #7cb342; /* Verde alface do professor */
+    color: #7cb342; 
     font-size: 16px;
-    width: 16px; /* Largura fixa para fixar a coluna */
+    width: 16px; 
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Espaçador invisível para manter o alinhamento perfeito nos blocos que não têm o "i" */
 .spacer-outside {
-    width: 16px; /* Mesma largura do ícone para manter a simetria */
+    width: 16px; 
 }
 
-/* --- Alinhamento do Switch (Esquerda) --- */
 .switch-left {
     display: flex;
     align-items: center;
@@ -139,7 +135,6 @@
     font-family: Arial, sans-serif;
 }
 
-/* --- Botão Switch Estilizado --- */
 .switch {
     position: relative;
     display: inline-block;
@@ -173,7 +168,7 @@
 }
 
 input:checked + .slider {
-    background-color: #7cb342;
+    background-color: #01863d;
 }
 
 input:checked + .slider:before {
@@ -187,9 +182,8 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* --- Botão Entrar --- */
 .btn-custom {
-    flex: 1; /* Ocupa exatamente a mesma largura horizontal que os inputs acima */
+    flex: 1;
     height: 38px;
     background-color: #717b85;
     color: white;
