@@ -1,47 +1,73 @@
 <div class="login-container">
-  
+
+  <div class="conteudo">
+
+     <div class="lado-esquerdo">
+      <img src="img/ranger.png" alt="Ford Ranger">
+    </div>
+
+
+    <div class="lado-direito">
+    
+      
   <div class="logo">
     <img src="img/ford.png" alt="Ford">
   </div>
 
-  <div class="content">
-    <div class="vehicle-section">
-      <img src="img/ranger.png" alt="Ranger" class="vehicle-img">
+
+      <h1>Boas-vindas</h1>
+
+      <!-- EMAIL -->
+      <div class="campo">
+        <span class="icone">👤</span>
+
+        <input
+          type="email"
+          placeholder="Insira seu e-mail"
+          [(ngModel)]="email">
+      </div>
+
+      <div class="info-icon">
+       <span class="info">ⓘ</span>
     </div>
 
-    <div class="form-section">
-      <div class="login-box">
-  <h2>Boas-vindas</h2>
+      <!-- SENHA -->
+      <div class="campo">
+        <span class="icone">🔒</span>
 
-  <div class="field-wrapper mb-3">
-    <div class="input-group-custom">
-      <i class="bi bi-person-fill icon-left"></i>
-      <input type="email" class="form-control-custom" placeholder="Insira seu e-mail">
+        <input
+          type="password"
+          placeholder="Insira sua senha"
+          [(ngModel)]="senha">
+
+        <span class="olho">👁</span>
+      </div>
+
+      <!-- SWITCH -->
+      <div class="linha-switch">
+
+        <span class="texto-switch">
+          Logar automaticamente
+        </span>
+
+        <label class="switch">
+          <input
+            type="checkbox"
+            [(ngModel)]="logarAutomaticamente">
+
+          <span class="slider"></span>
+        </label>
+
+        <span class="info">ⓘ</span>
+
+      </div>
+
+      <button class="btn-entrar">
+        Entrar
+      </button>
+
     </div>
-    <i class="bi bi-info-circle-fill icon-outside-green"></i>
+
   </div>
 
-  <div class="field-wrapper mb-2">
-    <div class="input-group-custom">
-      <i class="bi bi-lock-fill icon-left"></i>
-      <input type="password" class="form-control-custom" placeholder="Insira sua senha">
-      <i class="bi bi-eye-slash icon-right-gray"></i> </div>
-    <div class="spacer-outside"></div> 
-  </div>
-
-  <div class="field-wrapper mb-4">
-    <div class="switch-left">
-      <span class="switch-label">Logar automaticamente</span>
-      <label class="switch">
-        <input type="checkbox" id="autologin">
-        <span class="slider round"></span>
-      </label>
-    </div>
-    <i class="bi bi-info-circle-fill icon-outside-green"></i>
-  </div>
-
-  <div class="field-wrapper">
-    <button class="btn-custom">Entrar</button>
-    <div class="spacer-outside"></div>
-  </div>
 </div>
