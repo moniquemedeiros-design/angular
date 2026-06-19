@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { getXHRResponse } from 'rxjs/internal/ajax/getXHRResponse';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrls: ['./home.css']
 })
 export class Home {
- // Controla a visibilidade do menu lateral
-  isSidebarVisible: boolean = false;
 
-  // Função para alternar o menu
+  isSidebarVisible = false;
+
   toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
   }
+
 }

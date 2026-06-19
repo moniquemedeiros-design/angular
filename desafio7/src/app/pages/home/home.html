@@ -1,36 +1,43 @@
-<div class="d-flex" id="wrapper">
-  
-  <div class="bg-light border-right" id="sidebar-wrapper" [class.toggled]="!isSidebarVisible">
-    <div class="sidebar-heading p-3 text-center">
-      <img src="img/ford.png" alt="Ford Logo" class="img-fluid logo-ford">
-    </div>
-    <div class="list-group list-group-flush">
-      <a href="#" class="list-group-item list-group-item-action bg-light text-success fw-bold">Home</a>
-      <a href="#" class="list-group-item list-group-item-action bg-light text-success fw-bold">Dashboard</a>
-    </div>
-  </div>
+<div class="home-container">
 
-  <div id="page-content-wrapper" class="w-100 d-flex flex-column">
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom p-2">
-      <button class="btn btn-outline-secondary" (click)="toggleSidebar()">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <!-- MENU LATERAL -->
+  <aside class="sidebar" *ngIf="isSidebarVisible">
+
+    <div class="logo">
+      <img src="img/ford.png" alt="Ford">
+    </div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Dashboard</a>
+      <a href="#">Logout</a>
     </nav>
 
-    <div class="background-banner flex-grow-1">
-      
-      <div class="card login-card p-4 shadow-sm">
-        <div class="card-body">
-          <h6 class="text-muted mb-3">Sistema de dados FORD</h6>
-          <h4 class="card-title text-info fw-normal">Seja bem vindo(a)!</h4>
-          
-          <div class="mt-4" *ngIf="isSidebarVisible === false">
-            </div>
-        </div>
-      </div>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main class="conteudo">
+
+    <!-- BOTÃO HAMBÚRGUER -->
+    <div class="menu-icon" (click)="toggleSidebar()">
+      ☰
+    </div>
+
+    <!-- IMAGEM DA RANGER -->
+    <img
+      class="ranger"
+      src="img/ranger.png"
+      alt="Ford Ranger">
+
+    <!-- CARD CENTRAL -->
+    <div class="painel">
+
+      <h3>Sistema de dados FORD</h3>
+
+      <h2>Seja bem-vindo(a)!</h2>
 
     </div>
 
-  </div>
+  </main>
+
 </div>
