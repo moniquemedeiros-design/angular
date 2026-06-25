@@ -1,1 +1,115 @@
- 
+<div class="home-container">
+
+    <aside class="sidebar" #menuLateral>
+        <div class="sidebar-header">
+            <div class="menu-icon" (click)="menuLateral.classList.add('menu-fechado')">
+                ☰
+            </div>
+            <div class="logo">
+                <img src="img/ford.png" alt="Ford">
+            </div>
+        </div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="conteudo">
+
+        <div class="menu-icon-top" (click)="menuLateral.classList.remove('menu-fechado')">
+            ☰
+        </div>
+
+        <div class="ford-main-container">
+
+            <div class="ford-sidebar">
+                <div class="ford-card sidebar-padding">
+                    <label for="selectVeiculo" class="ford-field-label">Veículo</label>
+                    <select id="selectVeiculo" class="ford-dropdown-select" [(ngModel)]="modeloSelecionado"
+                        (change)="onModelChange()">
+                        <option *ngFor="let v of listaModelos" [value]="v.vehicle">
+                            {{ v.vehicle }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="ford-content-body">
+
+                <div class="ford-header">
+                    <h2 class="ford-title-text">Dashboard FORD</h2>
+                </div>
+
+                <div class="ford-cards-row">
+                    <div class="ford-card text-center-card">
+                        <span class="ford-card-meta">Total de Vendas</span>
+                        <h3 class="ford-card-number">{{ totalVendas }}</h3>
+                        <span class="ford-card-unit">unid.</span>
+                    </div>
+
+                    <div class="ford-card text-center-card">
+                        <span class="ford-card-meta">Conectados</span>
+                        <h3 class="ford-card-number">{{ conectados }}</h3>
+                        <span class="ford-card-unit">unid.</span>
+                    </div>
+
+                    <div class="ford-card text-center-card">
+                        <span class="ford-card-meta">Update Software</span>
+                        <h3 class="ford-card-number">{{ updateSoftware }}</h3>
+                        <span class="ford-card-unit">unid.</span>
+                    </div>
+                </div>
+
+                <div class="ford-image-showcase">
+                    <img *ngIf="modeloSelecionado" [src]="imagemVeiculoUrl" [alt]="modeloSelecionado"
+                        class="ford-car-photo">
+                </div>
+
+                <div class="ford-card no-padding overflow-hidden">
+                    <div class="ford-responsive-table">
+                        <table class="ford-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Código - Vin</th>
+                                    <th>Odômetro</th>
+                                    <th>Nível de Combustível</th>
+                                    <th>Status</th>
+                                    <th>Lat.</th>
+                                    <th>Long.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of dadosTabelaFiltrados">
+                                    <td class="ford-vin-highlight">{{ item.vin }}</td>
+                                    <td>{{ item.odometer }} km</td>
+                                    <td>
+                                        <div class="ford-progress-track">
+                                            <div class="ford-progress-fill" [style.width.%]="item.fuelLevel"></div>
+                                        </div>
+                                        <span class="ford-progress-num">{{ item.fuelLevel }}%</span>
+                                    </td>
+                                    <td>
+                                        <span class="ford-badge"
+                                            [ngClass]="item.status === 'Ativo' ? 'badge-blue' : 'badge-orange'">
+                                            {{ item.status }}
+                                        </span>
+                                    </td>
+                                    <td>{{ item.lat }}</td>
+                                    <td>{{ item.lng }}</td>
+                                </tr>
+                                <tr *ngIf="dadosTabelaFiltrados.length === 0">
+                                    <td colspan="6" class="ford-empty-msg">Nenhum veículo encontrado para a seleção.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</div>
