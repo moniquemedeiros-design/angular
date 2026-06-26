@@ -7,17 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class VehicleService {
 
-  private apiUrl = 'http://localhost:3000/vehicle';
+  private apiVehicle = 'http://localhost:3000/vehicle';
+  private apiVehicleData = 'http://localhost:3000/vehicleData';
 
   constructor(private http: HttpClient) {}
 
   getVehicles(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(this.apiVehicle);
   }
 
   getVehicleData(vin: string): Observable<any> {
-    return this.http.post<any>(
-      'http://localhost:3000/vehicleData',
+    return this.http.post<any>( this.apiVehicleData,
       { vin }
     );
   }

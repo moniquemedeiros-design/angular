@@ -1,6 +1,6 @@
+<!-- MENU LATERAL -->
 <div class="home-container">
 
-  <!-- MENU LATERAL -->
   <aside class="sidebar" *ngIf="isSidebarVisible">
 
     <div class="logo">
@@ -8,9 +8,9 @@
     </div>
 
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Dashboard</a>
-      <a href="#">Logout</a>
+      <a routerLink="/home">Home</a>
+      <a routerLink="/dashboard" class="active">Dashboard</a>
+      <a routerLink="/login">Logout</a>
     </nav>
 
   </aside>
@@ -24,10 +24,7 @@
     </div>
 
     <!-- IMAGEM DA RANGER -->
-    <img
-      class="ranger"
-      src="img/ranger.png"
-      alt="Ford Ranger">
+    <img class="ranger" src="img/ranger.png" alt="Ford Ranger">
 
     <!-- CARD CENTRAL -->
     <div class="painel">

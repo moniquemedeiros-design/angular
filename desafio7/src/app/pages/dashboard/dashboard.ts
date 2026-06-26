@@ -1,14 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { VehicleService } from '../../services/vehicle.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
@@ -18,6 +19,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   listaModelos: any[] = [];
   dadosTabelaFiltrados: any[] = [];
+  vinSelecionado =  '2FRHDUYS2Y63NHD22454';
+
+  // Variável para controlar a exibição do menu lateral (A que estava faltando!)
+  isSidebarVisible: boolean = true;
 
   // Modelos de controle vinculados ao select e input por ngModel
   modeloSelecionado: string = 'Ranger';
@@ -41,11 +46,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private buscaSubject = new Subject<string>();
   private buscaSubscription!: Subscription;
 
-  constructor(private http: HttpClient) { }
+  constructor(private VehicleService:VehicleService) { }
 
   ngOnInit(): void {
     // Requisição HTTP para a API rodando no Node.js
-    this.http.get<any>(this.apiVehicles).subscribe({
+    this.VehicleService.getVehicles().subscribe({
       next: (resposta) => {
         this.listaModelos = resposta.vehicles || [];
         this.atualizarDashboard();
@@ -61,6 +66,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.termoBuscaTabela = termo;
       this.filtrarDadosTabela();
     });
+  }
+
+  // Função para alternar a exibição da sidebar no clique (A que estava faltando!)
+  toggleSidebar(): void {
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 
   onModelChange(): void {
@@ -95,23 +105,48 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.updateSoftware = 0;
     }
 
+    switch (carroDados.id) {
+  case 1:
+    this.vinSelecionado = '2FRHDUYS2Y63NHD22454';
+    break;
+  case 2:
+    this.vinSelecionado = '2RFAASDY54E4HDU34874';
+    break;
+  case 3:
+    this.vinSelecionado = '2FRHDUYS2Y63NHD22455';
+    break;
+  case 4:
+    this.vinSelecionado = '2RFAASDY54E4HDU34875';
+    break;
+}
+
     this.filtrarDadosTabela();
   }
+   
+    filtrarDadosTabela(): void {
 
-  filtrarDadosTabela(): void {
-    let resultado = this.telemetriaMock.filter(
-      item => item.model.toLowerCase().trim() === this.modeloSelecionado.toLowerCase().trim()
-    );
+  this.VehicleService.getVehicleData(this.vinSelecionado).subscribe({
 
-    if (this.termoBuscaTabela.trim() !== '') {
-      resultado = resultado.filter(item =>
-        item.vin.toLowerCase().includes(this.termoBuscaTabela.toLowerCase())
-      );
+    next: (resposta) => {
+
+      this.dadosTabelaFiltrados = [{
+        vin: this.vinSelecionado,
+        odometer: resposta.odometro,
+        fuelLevel: resposta.nivelCombustivel,
+        status: resposta.status === 'on' ? 'Ativo' : 'Inativo',
+        lat: resposta.lat,
+        lng: resposta.long
+      }];
+
+    },
+
+    error: (erro) => {
+      console.error('Erro ao buscar dados do veículo:', erro);
     }
 
-    this.dadosTabelaFiltrados = resultado;
-  }
+  });
 
+}
   ngOnDestroy(): void {
     if (this.buscaSubscription) {
       this.buscaSubscription.unsubscribe();
