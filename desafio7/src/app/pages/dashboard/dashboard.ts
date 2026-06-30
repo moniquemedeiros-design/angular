@@ -53,6 +53,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.VehicleService.getVehicles().subscribe({
       next: (resposta) => {
         this.listaModelos = resposta.vehicles || [];
+        this.listaModelos[0].vehicle;
         this.atualizarDashboard();
       },
       error: (err) => console.error('Erro ao conectar com o servidor da API:', err)
