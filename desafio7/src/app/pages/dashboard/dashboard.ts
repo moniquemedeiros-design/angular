@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { RouterModule } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -46,7 +47,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private buscaSubject = new Subject<string>();
   private buscaSubscription!: Subscription;
 
-  constructor(private VehicleService: VehicleService) { }
+  constructor(private VehicleService: VehicleService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
     // Requisição HTTP para a API rodando no Node.js
@@ -140,6 +143,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
           lat: resposta.lat,
           lng: resposta.long
         }];
+
+        this.cdr.detectChanges();
 
       },
 
