@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   listaModelos: any[] = [];
   dadosTabelaFiltrados: any[] = [];
-  vinSelecionado =  '2FRHDUYS2Y63NHD22454';
+  vinSelecionado = '2FRHDUYS2Y63NHD22454';
 
   // Variável para controlar a exibição do menu lateral (A que estava faltando!)
   isSidebarVisible: boolean = true;
@@ -46,15 +46,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private buscaSubject = new Subject<string>();
   private buscaSubscription!: Subscription;
 
-  constructor(private VehicleService:VehicleService) { }
+  constructor(private VehicleService: VehicleService) { }
 
   ngOnInit(): void {
     // Requisição HTTP para a API rodando no Node.js
     this.VehicleService.getVehicles().subscribe({
       next: (resposta) => {
         this.listaModelos = resposta.vehicles || [];
-        this.listaModelos[0].vehicle;
-        this.atualizarDashboard();
+
+        if (this.listaModelos.length > 0) {
+          this.modeloSelecionado = this.listaModelos[0].vehicle;
+        }
       },
       error: (err) => console.error('Erro ao conectar com o servidor da API:', err)
     });
@@ -107,47 +109,47 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
 
     switch (carroDados.id) {
-  case 1:
-    this.vinSelecionado = '2FRHDUYS2Y63NHD22454';
-    break;
-  case 2:
-    this.vinSelecionado = '2RFAASDY54E4HDU34874';
-    break;
-  case 3:
-    this.vinSelecionado = '2FRHDUYS2Y63NHD22455';
-    break;
-  case 4:
-    this.vinSelecionado = '2RFAASDY54E4HDU34875';
-    break;
-}
+      case 1:
+        this.vinSelecionado = '2FRHDUYS2Y63NHD22454';
+        break;
+      case 2:
+        this.vinSelecionado = '2RFAASDY54E4HDU34874';
+        break;
+      case 3:
+        this.vinSelecionado = '2FRHDUYS2Y63NHD22455';
+        break;
+      case 4:
+        this.vinSelecionado = '2RFAASDY54E4HDU34875';
+        break;
+    }
 
     this.filtrarDadosTabela();
   }
-   
-    filtrarDadosTabela(): void {
 
-  this.VehicleService.getVehicleData(this.vinSelecionado).subscribe({
+  filtrarDadosTabela(): void {
 
-    next: (resposta) => {
+    this.VehicleService.getVehicleData(this.vinSelecionado).subscribe({
 
-      this.dadosTabelaFiltrados = [{
-        vin: this.vinSelecionado,
-        odometer: resposta.odometro,
-        fuelLevel: resposta.nivelCombustivel,
-        status: resposta.status === 'on' ? 'Ativo' : 'Inativo',
-        lat: resposta.lat,
-        lng: resposta.long
-      }];
+      next: (resposta) => {
 
-    },
+        this.dadosTabelaFiltrados = [{
+          vin: this.vinSelecionado,
+          odometer: resposta.odometro,
+          fuelLevel: resposta.nivelCombustivel,
+          status: resposta.status === 'on' ? 'Ativo' : 'Inativo',
+          lat: resposta.lat,
+          lng: resposta.long
+        }];
 
-    error: (erro) => {
-      console.error('Erro ao buscar dados do veículo:', erro);
-    }
+      },
 
-  });
+      error: (erro) => {
+        console.error('Erro ao buscar dados do veículo:', erro);
+      }
 
-}
+    });
+
+  }
   ngOnDestroy(): void {
     if (this.buscaSubscription) {
       this.buscaSubscription.unsubscribe();
